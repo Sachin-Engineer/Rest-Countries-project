@@ -1,0 +1,230 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+:root {
+    --primary-color: #ffffff;
+    --primary-bg-color: #fafafa;
+    --text-color: #000000;
+    --box-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.darkmode {
+    --primary-color: #2b3945;
+    --primary-bg-color: #202c37;
+    --text-color: #ffffff;
+    --box-shadow: rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    /* height: 100%; */
+    /* width: 100%; */
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--primary-bg-color);
+    transition: background-color 0.5s ease-in;
+}
+
+#wrapper {
+    min-height: 100vh;
+    /* overflow-x: hidden; */
+    /* background-color: rgb(222, 221, 221); */
+}
+
+header {
+    /* box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 4px 0 var(--box-shadow);
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgb(251, 219, 219); */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+.theme-switch {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch .second-icon {
+    display: none;
+}
+
+.darkmode .first-icon {
+    display: none;
+}
+
+.darkmode  .second-icon{
+    display: block;
+}
+
+.theme-switch span {
+    font-weight: 600;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* background-color: rgb(251, 219, 219); */
+}
+
+.btn-container button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 8px 0 var(--box-shadow);
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.country-details {
+    display: flex;
+    gap: 170px;
+    justify-content: space-between;
+}
+
+.country-details .child {
+    width: 50%;
+}
+
+/* .left-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+} */
+
+.left-detail img {
+    width: 100%;
+    max-height: 380px;
+    border-radius: 10px;
+}
+
+.right-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.country-name {
+    font-size: 32px;
+    color: var(--text-color);
+}
+
+.sub-detail {
+    padding: 20px 0 30px;
+    display: flex;
+    gap: 80px;
+    color: var(--text-color);
+}
+
+.sub-detail p {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+p b {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.border-countries {
+    display: flex;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.border-countries b {
+    white-space: nowrap;
+}
+
+.border-countries.hidden {
+    display: none;
+}
+
+.border-countries-btn-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-weight: 100;
+}
+
+.border-countries-btn-box button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    box-shadow: 0 0 4px 0 var(--box-shadow);
+    color: var(--text-color);
+    font-weight: 100;
+    background-color: var(--primary-color);
+}
+
+.border-countries button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 var(--box-shadow);
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 1050px) {
+    .country-details {
+        gap: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .country-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .country-details .child {
+        width: 100%;
+    }
+    .sub-detail {
+        justify-content: space-between;
+    }
+    .country-name {
+        text-align: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .title {
+        font-size: 18px;
+    }
+    header p {
+        font-size: 12px;
+    }
+}
