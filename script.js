@@ -13,7 +13,7 @@ fetch("https://rest-countries-project-lac.vercel.app/api/countries")
 
 searchBox.addEventListener('input', (e) => {
     if (searchBox.value) {
-    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name/${searchBox.value}`)
+    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(searchBox.value)}`)
             .then(response => response.json())
             .then(data => {
                 renderCountries(data)
@@ -28,7 +28,7 @@ searchBox.addEventListener('input', (e) => {
 })
 
 filterByRegion.addEventListener('change', (e) => {
-    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/region/${filterByRegion.value}`)
+    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/region?region=${encodeURIComponent(filterByRegion.value)}`)
         .then(response => response.json())
         .then(data => {
             renderCountries(data)

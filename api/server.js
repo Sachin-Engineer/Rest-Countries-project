@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-app.get('/countries', async (req, res) => {
+app.get('/api/countries', async (req, res) => {
   try {
     const response = await axios.get('https://www.apicountries.com/countries');
     res.json(response.data);
@@ -14,7 +14,7 @@ app.get('/countries', async (req, res) => {
   }
 });
 
-app.get('/countries/name/:name', async (req, res) => {
+app.get('/api/countries/name/:name', async (req, res) => {
   try {
     const { name } = req.params;
     const response = await axios.get(`https://www.apicountries.com/countries/name/${encodeURIComponent(name)}`);
@@ -24,7 +24,7 @@ app.get('/countries/name/:name', async (req, res) => {
   }
 });
 
-app.get('/countries/region/:region', async (req, res) => {
+app.get('/api/countries/region/:region', async (req, res) => {
   try {
     const { region } = req.params;
     const response = await axios.get(`https://www.apicountries.com/countries/region/${encodeURIComponent(region)}`);
@@ -34,7 +34,7 @@ app.get('/countries/region/:region', async (req, res) => {
   }
 });
 
-app.get('/alpha/:code', async (req, res) => {
+app.get('/api/alpha/:code', async (req, res) => {
   try {
     const { code } = req.params;
     const response = await axios.get(`https://www.apicountries.com/alpha/${encodeURIComponent(code)}`);
