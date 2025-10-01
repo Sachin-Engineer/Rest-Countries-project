@@ -98,4 +98,133 @@ section {
     color: var(--text-color);
     box-shadow: 0 0 8px 0 var(--box-shadow);
     cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.country-details {
+    display: flex;
+    gap: 170px;
+    justify-content: space-between;
+}
+
+.country-details .child {
+    width: 50%;
+}
+
+/* .left-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+} */
+
+.left-detail img {
+    width: 100%;
+    max-height: 380px;
+    border-radius: 10px;
+}
+
+.right-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.country-name {
+    font-size: 32px;
+    color: var(--text-color);
+}
+
+.sub-detail {
+    padding: 20px 0 30px;
+    display: flex;
+    gap: 80px;
+    color: var(--text-color);
+}
+
+.sub-detail p {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+p b {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.border-countries {
+    display: flex;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.border-countries b {
+    white-space: nowrap;
+}
+
+.border-countries.hidden {
+    display: none;
+}
+
+.border-countries-btn-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-weight: 100;
+}
+
+.border-countries-btn-box button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    box-shadow: 0 0 4px 0 var(--box-shadow);
+    color: var(--text-color);
+    font-weight: 100;
+    background-color: var(--primary-color);
+}
+
+.border-countries button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 var(--box-shadow);
+    background-color: var(--text-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 1050px) {
+    .country-details {
+        gap: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .country-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .country-details .child {
+        width: 100%;
+    }
+    .sub-detail {
+        justify-content: space-between;
+    }
+    .country-name {
+        text-align: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .title {
+        font-size: 18px;
+    }
+    header p {
+        font-size: 12px;
+    }
 }
