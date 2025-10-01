@@ -10,7 +10,7 @@ button.addEventListener('click', () => {
     window.history.back()
 })
 
-fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(countryName)}`)
+fetch(`https://rest-countries-project-phi.vercel.app/api/countries/name?name=${encodeURIComponent(countryName)}`)
     .then(Response => Response.json())
     .then(data => {
         // Find the exact match for the country from the API response
@@ -53,7 +53,7 @@ fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${e
 
         if (country.borders && country.borders.length > 0) {
             country.borders.map(borderAlphaCode => {
-                fetch(`https://rest-countries-project-lac.vercel.app/api/alpha?code=${encodeURIComponent(borderAlphaCode)}`)
+                fetch(`https://rest-countries-project-phi.vercel.app/api/alpha?code=${encodeURIComponent(borderAlphaCode)}`)
                     .then(Response => Response.json())
                     .then(borderCountry => {
                         const btn = document.createElement('button');

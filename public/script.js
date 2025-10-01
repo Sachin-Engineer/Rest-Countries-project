@@ -5,7 +5,7 @@ const filterByRegion = document.querySelector('#search-by-region')
 const themeSwitch = document.querySelector('.theme-switch')
 const themeSwitchText = document.querySelector('.theme-switch span')
 
-fetch("https://rest-countries-project-lac.vercel.app/api/countries")
+fetch("https://rest-countries-project-phi.vercel.app/api/countries")
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
@@ -19,7 +19,7 @@ fetch("https://rest-countries-project-lac.vercel.app/api/countries")
 
 searchBox.addEventListener('input', (e) => {
     if (searchBox.value) {
-        fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(searchBox.value)}`)
+        fetch(`https://rest-countries-project-phi.vercel.app/api/countries/name?name=${encodeURIComponent(searchBox.value)}`)
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
@@ -31,7 +31,7 @@ searchBox.addEventListener('input', (e) => {
                 countriesContainer.innerHTML = `<div class='error'>Failed to load countries: ${error.message}</div>`;
             });
     } else {
-    fetch("https://rest-countries-project-lac.vercel.app/api/countries")
+        fetch("https://rest-countries-project-phi.vercel.app/api/countries")
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
@@ -46,7 +46,7 @@ searchBox.addEventListener('input', (e) => {
 })
 
 filterByRegion.addEventListener('change', (e) => {
-    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/region?region=${encodeURIComponent(filterByRegion.value)}`)
+    fetch(`https://rest-countries-project-phi.vercel.app/api/countries/region?region=${encodeURIComponent(filterByRegion.value)}`)
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
@@ -84,14 +84,14 @@ function renderCountries(data) {
     });
 }
 
-if(localStorage.getItem('darkmode') === 'active') {
+if (localStorage.getItem('darkmode') === 'active') {
     document.body.classList.add('darkmode')
     themeSwitchText.textContent = 'Light Mode'
 }
 
 themeSwitch.addEventListener('click', () => {
     document.body.classList.toggle('darkmode')
-    if(document.body.classList.contains('darkmode')) {
+    if (document.body.classList.contains('darkmode')) {
         localStorage.setItem('darkmode', 'active')
         themeSwitchText.textContent = 'Light Mode'
     } else {
