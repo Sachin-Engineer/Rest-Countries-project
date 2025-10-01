@@ -5,7 +5,7 @@ const filterByRegion = document.querySelector('#search-by-region')
 const themeSwitch = document.querySelector('.theme-switch')
 const themeSwitchText = document.querySelector('.theme-switch span')
 
-fetch("http://localhost:3000/countries")
+fetch("https://rest-countries-project-lac.vercel.app/api/countries")
     .then(response => response.json())
     .then(data => {
         renderCountries(data)
@@ -13,13 +13,13 @@ fetch("http://localhost:3000/countries")
 
 searchBox.addEventListener('input', (e) => {
     if (searchBox.value) {
-    fetch(`http://localhost:3000/countries/name/${searchBox.value}`)
+    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name/${searchBox.value}`)
             .then(response => response.json())
             .then(data => {
                 renderCountries(data)
             })
     } else {
-    fetch("http://localhost:3000/countries")
+    fetch("https://rest-countries-project-lac.vercel.app/api/countries")
             .then(response => response.json())
             .then(data => {
                 renderCountries(data)
@@ -28,7 +28,7 @@ searchBox.addEventListener('input', (e) => {
 })
 
 filterByRegion.addEventListener('change', (e) => {
-    fetch(`http://localhost:3000/countries/region/${filterByRegion.value}`)
+    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/region/${filterByRegion.value}`)
         .then(response => response.json())
         .then(data => {
             renderCountries(data)

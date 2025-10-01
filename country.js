@@ -10,7 +10,7 @@ button.addEventListener('click', () => {
     window.history.back()
 })
 
-fetch(`http://localhost:3000/countries/name/${countryName}`)
+fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name/${countryName}`)
     .then(Response => Response.json())
     .then(data => {
         const strictMatch = data.filter(country => country.name === countryName)
@@ -47,7 +47,7 @@ fetch(`http://localhost:3000/countries/name/${countryName}`)
 
         strictMatch[0].borders ?
             strictMatch[0].borders.map(borderAlphaCode => {
-                fetch(`http://localhost:3000/alpha/${borderAlphaCode}`)
+                fetch(`https://rest-countries-project-lac.vercel.app/api/alpha/${borderAlphaCode}`)
                     .then(Response => Response.json())
                     .then(country => {
                         const btn = document.createElement('button')
