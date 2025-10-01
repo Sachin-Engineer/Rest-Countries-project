@@ -6,33 +6,57 @@ const themeSwitch = document.querySelector('.theme-switch')
 const themeSwitchText = document.querySelector('.theme-switch span')
 
 fetch("https://rest-countries-project-lac.vercel.app/api/countries")
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
     .then(data => {
         renderCountries(data)
     })
+    .catch(error => {
+        countriesContainer.innerHTML = `<div class='error'>Failed to load countries: ${error.message}</div>`;
+    });
 
 searchBox.addEventListener('input', (e) => {
     if (searchBox.value) {
-    fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(searchBox.value)}`)
-            .then(response => response.json())
+        fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(searchBox.value)}`)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
             .then(data => {
                 renderCountries(data)
             })
+            .catch(error => {
+                countriesContainer.innerHTML = `<div class='error'>Failed to load countries: ${error.message}</div>`;
+            });
     } else {
     fetch("https://rest-countries-project-lac.vercel.app/api/countries")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
             .then(data => {
                 renderCountries(data)
             })
+            .catch(error => {
+                countriesContainer.innerHTML = `<div class='error'>Failed to load countries: ${error.message}</div>`;
+            });
     }
 })
 
 filterByRegion.addEventListener('change', (e) => {
     fetch(`https://rest-countries-project-lac.vercel.app/api/countries/region?region=${encodeURIComponent(filterByRegion.value)}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
         .then(data => {
             renderCountries(data)
         })
+        .catch(error => {
+            countriesContainer.innerHTML = `<div class='error'>Failed to load countries: ${error.message}</div>`;
+        });
 })
 
 function renderCountries(data) {
