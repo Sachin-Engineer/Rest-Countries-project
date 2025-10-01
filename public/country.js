@@ -13,65 +13,72 @@ button.addEventListener('click', () => {
 fetch(`https://rest-countries-project-lac.vercel.app/api/countries/name?name=${encodeURIComponent(countryName)}`)
     .then(Response => Response.json())
     .then(data => {
-        const strictMatch = data.filter(country => country.name === countryName)
-        leftDetail.src = strictMatch[0].flag
+        // Find the exact match for the country from the API response
+        const country = data.find(c => c.name === countryName);
+
+        if (!country) {
+            rightDetail.innerHTML = `<h2>Country not found.</h2>`;
+            return;
+        }
+
+        leftDetail.src = country.flag;
 
         rightDetail.innerHTML = `
-            <h2 class="country-name">${strictMatch[0].name}</h2>
+            <h2 class="country-name">${country.name}</h2>
 
             <div class="sub-detail">
                 <div class="left">
-                    <p><b>Native Name:</b>&nbsp; ${strictMatch[0].nativeName}</p>
-                    <p><b>Population:</b>&nbsp; ${strictMatch[0].population.toLocaleString('en-IN')}</p>
-                    <p><b>Region:</b>&nbsp; ${strictMatch[0].region}</p>
-                    <p><b>Sub Region:</b>&nbsp; ${strictMatch[0].subregion}</p>
-                    <p><b>Capital:</b>&nbsp; ${strictMatch[0].capital ? strictMatch[0].capital : 'No Capital'}</p>
+                    <p><b>Native Name:</b>&nbsp; ${country.nativeName}</p>
+                    <p><b>Population:</b>&nbsp; ${country.population.toLocaleString('en-IN')}</p>
+                    <p><b>Region:</b>&nbsp; ${country.region}</p>
+                    <p><b>Sub Region:</b>&nbsp; ${country.subregion}</p>
+                    <p><b>Capital:</b>&nbsp; ${country.capital ? country.capital : 'No Capital'}</p>
                 </div>
 
                 <div class="right">
-                    <p><b>Top Level Domain:</b>&nbsp; ${strictMatch[0].topLevelDomain}</p>
-                    <p><b>Currencies:</b>&nbsp; ${strictMatch[0].currencies ? strictMatch[0].currencies[0].name : 'No Currencies'}</p>
-                    <p><b>Language:</b>&nbsp; ${strictMatch[0].languages.map(langData => langData.name).join(', ')}</p>
+                    <p><b>Top Level Domain:</b>&nbsp; ${country.topLevelDomain.join(', ')}</p>
+                    <p><b>Currencies:</b>&nbsp; ${country.currencies ? country.currencies.map(c => c.name).join(', ') : 'No Currencies'}</p>
+                    <p><b>Language:</b>&nbsp; ${country.languages.map(lang => lang.name).join(', ')}</p>
                 </div>
             </div>
 
             <div class="border-countries">
                 <b>Border Countries:</b>
                 <div class="border-countries-btn-box">
-                            
                 </div>
             </div>
         `;
         const borderCountries = document.querySelector('.border-countries');
         const borderCountriesBox = document.querySelector('.border-countries-btn-box');
 
-        strictMatch[0].borders ?
-            strictMatch[0].borders.map(borderAlphaCode => {
+        if (country.borders && country.borders.length > 0) {
+            country.borders.map(borderAlphaCode => {
                 fetch(`https://rest-countries-project-lac.vercel.app/api/alpha?code=${encodeURIComponent(borderAlphaCode)}`)
                     .then(Response => Response.json())
-                    .then(country => {
-                        const btn = document.createElement('button')
-                        // console.log(country.name)
-                        btn.textContent = country.name
+                    .then(borderCountry => {
+                        const btn = document.createElement('button');
+                        btn.textContent = borderCountry.name;
                         borderCountriesBox.append(btn)
                         btn.addEventListener('click', () => {
                             const url = new URL(window.location.href);
-                            url.searchParams.set('name', country.name);
+                            url.searchParams.set('name', borderCountry.name);
                             window.location.href = url.toString();
                         });
-                    })
-            }) :
-            borderCountries.classList.add('hidden')
-    })
+                    });
+            });
+        } else {
+            borderCountries.classList.add('hidden');
+        }
+    });
 
-if(localStorage.getItem('darkmode') === 'active') {
+if (localStorage.getItem('darkmode') === 'active') {
     document.body.classList.add('darkmode')
     themeSwitchText.textContent = 'Light Mode'
 }
 
 themeSwitch.addEventListener('click', () => {
     document.body.classList.toggle('darkmode')
-    if(document.body.classList.contains('darkmode')) {
+    if (document.body.classList.contains('darkmode')) {
         localStorage.setItem('darkmode', 'active')
         themeSwitchText.textContent = 'Light Mode'
     } else {
